@@ -25,12 +25,22 @@ public class RPNTests {
 		assertThat(rpnc.stack.pop(), is(7));
 		assertThat(rpnc.stack.pop(), is(5));
 	}
+
 	@Test
 	public void calculateMethodTest(){
 		RPNCalculator rpnc = new RPNCalculator();
-//		rpnc.calculate("3 2 5 + *");
+		int calc = rpnc.calculate("1 2 +"); //	– kontrolli, et kalkulaator arvutab õigesti 1 2 + -> 3
+		int calc2 = rpnc.calculate("1 2 + 4 *"); //– kontrolli, et kalkulaator arvutab õigesti 1 2 + 4 * -> 12
+		int calc3 = rpnc.calculate("4 3 + 2 1 + *");//	– kontrolli, et kalkulaator arvutab õigesti 4 3 + 2 1 + * -> 21
+		int calc4 = rpnc.calculate("1 2 + 4 *");//	– kontrolli, et kalkulaator (calculate meetod) arvutab õigesti  1 2 + 4 * -> 12
 		
-		assertThat(rpnc.calculate("2 3 5 + *"), is(16));
+		int calcOriginal = rpnc.calculate("3 2 5 + *");
 		
+		
+		assertThat(calc, is(3));
+		assertThat(calc2, is(12));
+		assertThat(calc3, is(21));
+		assertThat(calc4, is(12));
+		assertThat(calcOriginal, is(21));
 	}
 }
